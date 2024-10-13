@@ -1,0 +1,77 @@
+
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4"
+        *ngFor="let mobile of mobileData">
+            <div class="card-body"
+            [ngClass]="{
+                'notAvailable' : !mobile.isAvailable
+            }">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- <img class="img-fluid"
+                        [src]="mobile.image || 'https://placehold.co/600x400'" 
+                        [alt]="mobile.name"
+                        [title]="mobile.name"
+                        > -->
+                        
+                        <!-- <ng-template #noImg>
+                            <img class="img-fluid"
+                            src="https://placehold.co/600x400" 
+                            [alt]="mobile.name"
+                            [title]="mobile.name">
+                        </ng-template> -->
+                        <div class="imgContainer">
+                            <img class="img-fluid"
+                            [src]="mobile.image" 
+                            [alt]="mobile.name"
+                            [title]="mobile.name"
+                            *ngIf="mobile.image; else noImg">
+
+                            <ng-template #noImg>
+                                <p class="noImgMsg text-muted">
+                                    Product image is not available
+                                </p>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <h3>
+                            {{mobile.name}}
+                            <small class="p-2 text-white"
+                            [ngClass]="{
+                                'bg-success': mobile.rating >= 4,
+                                'bg-warning' : mobile.rating >= 3 && mobile.rating < 4,
+                                'bg-danger': mobile.rating < 3
+                            }">
+                                {{mobile.rating}}
+                            </small>
+                        </h3>
+                        <div>
+                            <ul *ngFor="let spec of mobile.specification">
+                                <li>{{spec}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <h4>
+                            {{mobile.price}}
+                            <small class="d-block text-muted style">
+                                {{mobile.originalPrice}}
+                            </small>
+                        </h4>
+
+                            <strong class="text-danger"
+                            *ngIf="mobile.noOfItem  < 10">
+                                only {{mobile.noOfItem}} left
+                            </strong>
+                       
+                    </div>
+                </div>
+            </div>
+            <p class="noProduct text-danger" *ngIf="!mobile.isAvailable">
+                Currently unavailable
+            </p>
+        </div>
+    </div>
+</div>

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { MobileCardComponent } from './shared/component/mobile-card/mobile-card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MobileCardComponent
   ],
   imports: [
     BrowserModule
